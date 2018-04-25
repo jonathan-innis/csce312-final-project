@@ -1,4 +1,4 @@
-rrmov 30, %ra	# Move 30 into %ra
-rrmov 7, %rb	# Move 7 into %rb
-sub %rb, %ra	# Subtract 30 from 7
-cmp %ra		# Set flags based on value in %ra
+rrmov 30, ra	# Move 30 into ra
+rrmov 7, rb	# Move 7 into rb
+sub rb, ra	# Subtract 30 from 7
+cmp ra		# Set flags based on value in ra

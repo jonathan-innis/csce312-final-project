@@ -1,14 +1,14 @@
-rrmov 7 %rg	# Move 7 into %rg
-rrmov 6 %rf	# Move 6 into %rf
-rrmov 5 %re	# Move 5 into %re
-rrmov 4 %rd	# Move 4 into %rd
-rrmov 3 %rc	# Move 3 into %rc
-rrmov 2 %rb	# Move 2 into %rb
-rrmov 1 %ra	# Move 1 into %ra
+rrmov 7, rg	# Move 7 into rg
+rrmov 6, rf	# Move 6 into rf
+rrmov 5, re	# Move 5 into re
+rrmov 4, rd	# Move 4 into rd
+rrmov 3, rc	# Move 3 into rc
+rrmov 2, rb	# Move 2 into rb
+rrmov 1, ra	# Move 1 into ra
 
-mult %ra, %rb
-mult %rb, %rc
-mult %rc, %rd
-mult %rd, %re
-mult %re, %rf
-mult %rf, %rg	# Calculate factorial (7!)
+mult ra, rb
+mult rb, rc
+mult rc, rd
+mult rd, re
+mult re, rf
+mult rf, rg	# Calculate factorial (7!)
