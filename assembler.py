@@ -23,14 +23,13 @@ def const_to_tmp(x):
 
 def decode_instr(instr):
     global instr_count
-    spl = instr.lower().split()
-    if instr[0] == '#' or not spl:
-        return
+    spl = instr[:instr.find('#')].lower().split()
 
+    if not spl:
+        return
     if spl[0][-1] == ':':
         mark_codes[spl[0][:-1]] = 3*instr_count
         spl = spl[1:]
-
     if not spl:
         return
 
