@@ -1,0 +1,9 @@
+squee:
+	rrmov 8, ra
+	rrmov 9, rb
+	add ra, rb
+
+rrmov 38, rc
+cmp rc
+jmp GE, squee
+
