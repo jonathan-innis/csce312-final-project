@@ -1,0 +1,29 @@
+# adds two matrices stored in memory
+# assumption: matrix entries are signed bytes
+#   each matrix is stored as an array of 4 consec. entries
+#   in memory, with the pointers to their first elements stored
+#   in ra and rb
+#   the result goes in a 4-byte block of memory spec. by rd
+# also, assuming all registers init. to zero
+
+rrmov 0, ra     # matr A
+rrmov 16, rb    # matr B
+rrmov 32, rd    # result matrix
+
+loop:
+    mrmov ra, re
+    mrmov rb, rf
+    add rf, re
+    rmmov re, rd
+
+    add 1, ra
+    add 1, rb
+    add 1, rd
+
+    sub 3, rc
+    cmp rc
+    jmp lz, loop
+    add 4, rc
+
+sub 4, rd
+halt
