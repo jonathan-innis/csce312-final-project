@@ -39,7 +39,7 @@ def decode_instr(instr):
 
     args_out = [0, 0, 0]
     dummy = ''
-    if op in ('cmp', 'rmmov', 'mrmov', 'rrmov', 'add', 'sub', 'mul'):
+    if op in ('cmp', 'rmmov', 'mrmov', 'rrmov', 'add', 'sub', 'mult'):
         if args[0] in reg_codes:
             args_out[0] = reg_codes[args[0]]
         else:
