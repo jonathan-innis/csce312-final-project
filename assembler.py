@@ -28,8 +28,11 @@ def decode_instr(instr):
         return
 
     if spl[0][-1] == ':':
-        markers[spl[0][:-1]] = 3*instr_count
+        mark_codes[spl[0][:-1]] = 3*instr_count
         spl = spl[1:]
+
+    if not spl:
+        return
 
     op = spl[0]
     op_code = op_codes[op]
@@ -41,13 +44,14 @@ def decode_instr(instr):
         if args[0] in reg_codes:
             args_out[0] = reg_codes[args[0]]
         else:
-            assert op in ('mrmov', 'rrmov'), 'bad register name'
+            assert op not in ('rmmov', 'cmp'), 'bad register name'
             dummy = const_to_tmp(args[0])
-            args_out[0] = 0
         if op != 'cmp':
-            assert op == 'rmmov', 'bad register name'
-            dummy = const_to_tmp(args[1])
-            args_out[1] = reg_codes[args[1]]
+            if args[1] in reg_codes:
+                args_out[1] = reg_codes[args[1]]
+            else:
+                assert op == 'rmmov', 'bad register name'
+                dummy = const_to_tmp(args[1])
     elif op == 'jmp':
         args_out[0] = flag_codes[args[0]]
         args_out[2] = mark_codes[args[1]]
@@ -61,11 +65,12 @@ def decode_instr(instr):
     return dummy + ' '.join(map(to_byte, out_codes))
 
 def main():
-    k = 0
+    global instr_count
+    instr_count = 0
     bytes = (' '.join(filter(None, map(decode_instr, stdin)))).split()
     while len(bytes) % WIDTH:
         bytes.append('00')
-    for i in range(len(bytes) // WIDTH):
+    for i in range(0, len(bytes), WIDTH):
         print(*bytes[i:i+WIDTH])
 
 main()

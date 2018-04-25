@@ -1,0 +1,30 @@
+# test move functionality
+
+rrmov 255, ra
+rrmov ra, rb
+rrmov 5, rb
+
+rmmov ra, 0
+rmmov rb, ra
+
+mrmov 0, ra
+mrmov ra, rb
+
+# test operations
+
+add ra, rb
+add 5, rb
+sub rb, ra
+sub 10, ra
+mult 2, rb
+mult ra, rb
+
+# test jumping
+
+# marker
+skip:
+
+cmp rd
+jmp gz, skip
+
+halt
