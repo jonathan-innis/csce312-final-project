@@ -26,24 +26,23 @@ rmmov ra, 6
 rrmov 4, ra
 rmmov ra, 7
 
-rrmov 0, ra     # matr A
+rrmov 0, ra    # matr A
 rrmov 4, rb    # matr B
-rrmov 16, rd    # result matrix
+rrmov 4, rc    # loop variable
+rrmov 8, rd    # result matrix
 
 loop:
     mrmov ra, re
     mrmov rb, rf
     add rf, re
     rmmov re, rd
-
     add 1, ra
     add 1, rb
     add 1, rd
 
-    sub 3, rc
+    sub 1, rc
     cmp rc
-    jmp lz, loop
-    add 4, rc
+    jmp gz, loop
 
 sub 4, rd
 halt
