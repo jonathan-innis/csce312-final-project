@@ -1,13 +1,13 @@
-rrmov 6, %rg	# Initialize %rg to 6
-rrmov 5, %rf	# Initialize %rf to 5
-rrmov 4, %re	# "               " 4
-rrmov 3, %rd	# "               " 3
-rrmov 2, %rc	# "               " 2
-rrmov 1, %rb	# "               " 1
-rrmov 0, %ra	# "               " 0
-sum %ra, %rb	# Add %ra to %rb
-sum %rb, %rc	# Add %rb to %rc
-sum %rc, %rd	# Add %rc to %rd
-sum %rd, %re	# Add %rd to %re
-sum %re, %rf	# Add %re to %rf
-sum %rf, %rg	# Add %rf to %rg (Should be 21)
+rrmov 6, rg	
+rrmov 5, rf	
+rrmov 4, re
+rrmov 3, rd	
+rrmov 2, rc
+rrmov 1, rb
+rrmov 0, ra
+add ra, rb	
+add rb, rc
+add rc, rd	
+add rd, re	
+add re, rf
+add rf, rg

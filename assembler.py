@@ -19,7 +19,7 @@ def to_byte(x):
     return hex(x)[2:].zfill(2)
 
 def const_to_tmp(x):
-    return '03 00 ' + to_byte(int(x)) + ' '
+    return ' 03 00 ' + to_byte(int(x)) + ' '
 
 def decode_instr(instr):
     global instr_count
@@ -60,7 +60,7 @@ def decode_instr(instr):
     else:
         instr_count += 1
         
-    out_codes = [op_code, args_out[0]<<4 + args_out[1], args_out[2]]
+    out_codes = [op_code, (args_out[0]<<4) + args_out[1], args_out[2]]
     return dummy + ' '.join(map(to_byte, out_codes))
 
 def main():
