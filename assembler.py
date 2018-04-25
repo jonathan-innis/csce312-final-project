@@ -13,7 +13,7 @@ reg_codes = {s:i for i, s in enumerate(regs)}
 flag_codes = {s:i for i, s in enumerate(flags)}
 mark_codes = {}
 
-reg_codes['halt'] = 0x10
+op_codes['halt'] = 0x10
 
 def to_byte(x):
     return hex(x)[2:].zfill(2)
