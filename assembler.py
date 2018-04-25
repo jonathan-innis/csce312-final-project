@@ -5,7 +5,7 @@ REGISTERS = 7
 WIDTH = 16
 
 ops = ['rmmov', 'mrmov', 'rrmov', 'irmov', 'add', 'sub', 'cmp', 'mult', 'jmp']
-regs = ['r' + c for c in ascii_lowercase[:REGISTERS]]
+regs = ['rtmp'] + ['r' + c for c in ascii_lowercase[:REGISTERS]] 
 flags = ['ao', 'lz', 'le', 'eq', 'ge', 'gz']
 
 op_codes = {s:i for i, s in enumerate(ops)}
@@ -17,6 +17,9 @@ op_codes['halt'] = 0x10
 
 def to_byte(x):
     return hex(x)[2:].zfill(2)
+
+def const_to_tmp(x):
+    return '03 00 ' + to_byte(int(x)) + ' '
 
 def decode_instr(instr):
     global instr_count
@@ -33,19 +36,29 @@ def decode_instr(instr):
     args = [s.strip() for s in ''.join(spl[1:]).split(',')]
 
     args_out = [0, 0, 0]
+    dummy = ''
     if op in ('cmp', 'rmmov', 'mrmov', 'rrmov', 'add', 'sub', 'mul'):
-        args_out[0] = reg_codes[args[0]]
+        if args[0] in reg_codes:
+            args_out[0] = reg_codes[args[0]]
+        else:
+            assert op in ('mrmov', 'rrmov'), 'bad register name'
+            dummy = const_to_tmp(args[0])
+            args_out[0] = 0
         if op != 'cmp':
+            assert op == 'rmmov', 'bad register name'
+            dummy = const_to_tmp(args[1])
             args_out[1] = reg_codes[args[1]]
     elif op == 'jmp':
         args_out[0] = flag_codes[args[0]]
         args_out[2] = mark_codes[args[1]]
-    elif op == 'irmov':
-        args_out[0] = reg_codes[args[1]]
-        args_out[2] = int(args[0])
+
+    if dummy:
+        instr_count += 2
+    else:
+        instr_count += 1
         
     out_codes = [op_code, args_out[0]<<4 + args_out[1], args_out[2]]
-    return ' '.join(map(to_byte, out_codes))
+    return dummy + ' '.join(map(to_byte, out_codes))
 
 def main():
     k = 0
