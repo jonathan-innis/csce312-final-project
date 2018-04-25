@@ -1,0 +1,3 @@
+rrmov 16, %ra
+rmmov %ra, %rb
+mrmov %rb, %rc	# rc should be 16

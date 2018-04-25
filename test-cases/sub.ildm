@@ -1,0 +1,10 @@
+rrmov 7, %rg
+rrmov 6, %rf
+rrmov 5, %re
+rrmov 4, %rd
+rrmov 3, %rc
+rrmov 2, %rb
+rrmov 1, %ra
+
+sub %rf, %rg
+sub %ra, %rg	# Should be 0
