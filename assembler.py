@@ -4,7 +4,7 @@ from sys import stdin
 REGISTERS = 7
 WIDTH = 16
 
-ops = ['rmmov', 'mrmov', 'rrmov', 'irmov', 'add', 'sub', 'mul', 'cmp', 'jmp', 'halt']
+ops = ['rmmov', 'mrmov', 'rrmov', 'irmov', 'add', 'sub', 'cmp', 'mult', 'jmp']
 regs = ['r' + c for c in ascii_lowercase[:REGISTERS]]
 flags = ['ao', 'lz', 'le', 'eq', 'ge', 'gz']
 
@@ -12,6 +12,8 @@ op_codes = {s:i for i, s in enumerate(ops)}
 reg_codes = {s:i for i, s in enumerate(regs)}
 flag_codes = {s:i for i, s in enumerate(flags)}
 mark_codes = {}
+
+reg_codes['halt'] = 0x10
 
 def to_byte(x):
     return hex(x)[2:].zfill(2)
