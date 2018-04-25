@@ -7,7 +7,7 @@
 # also, assuming all registers init. to zero
 
 # load matr A into memory
-rmmov 0, 1
+rmmov ra, 1
 rmmov 1, 3
 rmmov 2, 5
 rmmov 3, 5

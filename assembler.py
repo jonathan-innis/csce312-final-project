@@ -13,7 +13,7 @@ reg_codes = {s:i for i, s in enumerate(regs)}
 flag_codes = {s:i for i, s in enumerate(flags)}
 mark_codes = {}
 
-op_codes['halt'] = 0x10
+op_codes['halt'] = 0x0f
 
 def to_byte(x):
     return hex(x)[2:].zfill(2)
@@ -43,7 +43,7 @@ def decode_instr(instr):
         if args[0] in reg_codes:
             args_out[0] = reg_codes[args[0]]
         else:
-            assert op != 'cmp', 'bad register name'
+            assert op not in ('rmmov', 'cmp'), 'bad register name'
             dummy = const_to_tmp(args[0])
         if op != 'cmp':
             if args[1] in reg_codes:
