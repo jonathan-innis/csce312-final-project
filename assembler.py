@@ -69,6 +69,7 @@ def main():
     bytes = (' '.join(filter(None, map(decode_instr, stdin)))).split()
     while len(bytes) % WIDTH:
         bytes.append('00')
+    print('v2.0 raw')
     for i in range(0, len(bytes), WIDTH):
         print(*bytes[i:i+WIDTH])
 
