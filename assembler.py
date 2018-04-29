@@ -16,6 +16,8 @@ mark_codes = {}
 op_codes['halt'] = 0x0f
 
 def to_byte(x):
+    if type(x) is str:
+        return x
     return hex(x)[2:].zfill(2)
 
 def const_to_tmp(x):
@@ -53,7 +55,7 @@ def decode_instr(instr):
                 dummy = const_to_tmp(args[1])
     elif op == 'jmp':
         args_out[0] = flag_codes[args[0]]
-        args_out[2] = mark_codes[args[1]]
+        args_out[2] = args[1]
 
     if dummy:
         instr_count += 2
@@ -67,6 +69,10 @@ def main():
     global instr_count
     instr_count = 0
     bytes = (' '.join(filter(None, map(decode_instr, stdin)))).split()
+    for i, b in enumerate(bytes):
+        if b[0] not in '0123456789abcdef':
+            print(b)
+            bytes[i] = to_byte(mark_codes[b])
     while len(bytes) % WIDTH:
         bytes.append('00')
     print('v2.0 raw')

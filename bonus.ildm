@@ -1,0 +1,6 @@
+# a is in ra, b is in rb
+
+rrmov ra, rc
+sub rb, rc
+
+jg

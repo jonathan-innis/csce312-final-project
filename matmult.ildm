@@ -26,6 +26,7 @@ rmmov ra, 6
 rrmov 4, ra
 rmmov ra, 7
 
+# compute each entry of matrix
 mrmov 0, ra
 mrmov 4, rb
 mrmov 1, rc

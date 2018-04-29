@@ -20,11 +20,10 @@ mult 2, rb
 mult ra, rb
 
 # test jumping
-
+cmp rd
+jmp gz, skip
 # marker
 skip:
 
-cmp rd
-jmp gz, skip
 
 halt
