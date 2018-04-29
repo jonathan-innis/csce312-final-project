@@ -1,0 +1,44 @@
+                      | #moving all of the values to the matrix
+  0x000: 30f000000000 | irmovl 0, %eax
+  0x006: 30f101000000 | irmovl 1, %ecx
+  0x00c: 401000000000 | rmmovl %ecx, (%eax)
+  0x012: 30f103000000 | irmovl 3, %ecx
+  0x018: 401004000000 | rmmovl %ecx, 4(%eax)
+  0x01e: 30f105000000 | irmovl 5, %ecx
+  0x024: 401008000000 | rmmovl %ecx, 8(%eax)
+  0x02a: 30f105000000 | irmovl 5, %ecx
+  0x030: 40100c000000 | rmmovl %ecx, 12(%eax)
+  0x036: 30f101000000 | irmovl 1, %ecx
+  0x03c: 401010000000 | rmmovl %ecx, 16(%eax)
+  0x042: 30f103000000 | irmovl 3, %ecx
+  0x048: 401014000000 | rmmovl %ecx, 20(%eax)
+  0x04e: 30f102000000 | irmovl 2, %ecx
+  0x054: 401018000000 | rmmovl %ecx, 24(%eax)
+  0x05a: 30f104000000 | irmovl 4, %ecx
+  0x060: 40101c000000 | rmmovl %ecx, 28(%eax)
+                      | 
+                      | #adding the parts of the matrix together
+                      | #first entry
+  0x066: 501000000000 | mrmovl (%eax), %ecx
+  0x06c: 503010000000 | mrmovl 16(%eax), %ebx
+  0x072: 6031         | addl %ebx, %ecx
+  0x074: 401020000000 | rmmovl %ecx, 32(%eax)
+                      | 
+                      | #second entry
+  0x07a: 501004000000 | mrmovl 4(%eax), %ecx
+  0x080: 503014000000 | mrmovl 20(%eax), %ebx
+  0x086: 6031         | addl %ebx, %ecx
+  0x088: 401024000000 | rmmovl %ecx, 36(%eax)
+                      | 
+                      | #third entry
+  0x08e: 501008000000 | mrmovl 8(%eax), %ecx
+  0x094: 503018000000 | mrmovl 24(%eax), %ebx
+  0x09a: 6031         | addl %ebx, %ecx
+  0x09c: 401028000000 | rmmovl %ecx, 40(%eax)
+                      | 
+                      | #fourth entry
+  0x0a2: 50100c000000 | mrmovl 12(%eax), %ecx
+  0x0a8: 50301c000000 | mrmovl 28(%eax), %ebx
+  0x0ae: 6031         | addl %ebx, %ecx
+  0x0b0: 40102c000000 | rmmovl %ecx, 44(%eax)
+                      | 
