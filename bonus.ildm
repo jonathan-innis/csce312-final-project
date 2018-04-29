@@ -3,4 +3,13 @@
 rrmov ra, rc
 sub rb, rc
 
-jg
+cmp rc
+jmp le, else
+if:
+    add rb, ra
+    jmp ao, end
+else:
+    sub rb, ra
+
+end:
+    halt

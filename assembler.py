@@ -70,8 +70,8 @@ def main():
     instr_count = 0
     bytes = (' '.join(filter(None, map(decode_instr, stdin)))).split()
     for i, b in enumerate(bytes):
-        if b[0] not in '0123456789abcdef':
-            print(b)
+        hexs = '0123456789abcdef'
+        if len(b) != 2 or b[0] not in hexs or b[1] not in hexs:
             bytes[i] = to_byte(mark_codes[b])
     while len(bytes) % WIDTH:
         bytes.append('00')
