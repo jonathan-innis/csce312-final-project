@@ -1,4 +1,6 @@
 # a is in ra, b is in rb
+rrmov 3, ra
+rrmov 5, rb
 
 rrmov ra, rc
 sub rb, rc
